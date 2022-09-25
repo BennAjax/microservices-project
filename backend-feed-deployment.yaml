@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-feed
+  labels:
+    app: backend-feed
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend-feed
+  template:
+    metadata:
+      labels:
+        app: backend-feed
+    spec:
+      containers:
+      - name: udagram-api-feed
+        image: benn01/udagram-api-feed:v1
+        ports:
+        - containerPort: 80
+        env: 
+        - name: POSTGRES_USERNAME
+          value: "postgres"
+        - name: POSTGRES_PASSWORD
+          value: "qwerty12"
+        - name: POSTGRES_HOST
+          value: "microservices-database-0668.c6icmem2enkz.us-east-1.rds.amazonaws.com"
+        - name: POSTGRES_DB
+          value: "postgres"
