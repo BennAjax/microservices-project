@@ -15,16 +15,36 @@ spec:
         app: backend-user
     spec:
       containers:
-      - name: udagram-api-user
+      - name: backend-user
         image: benn01/udagram-api-user:v1
         ports:
-        - containerPort: 80
+        - containerPort: 8080
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"
         env: 
         - name: POSTGRES_USERNAME
-          value: "postgres"
+          valueFrom:
+            secretKeyRef:
+              name: env-secret
+              key: POSTGRES_USERNAME
         - name: POSTGRES_PASSWORD
-          value: "qwerty12"
+          valueFrom:
+            secretKeyRef:
+              name: env-secret
+              key: POSTGRES_PASSWORD
         - name: POSTGRES_HOST
-          value: "microservices-database-0668.c6icmem2enkz.us-east-1.rds.amazonaws.com"
+          valueFrom:
+            configMapKeyRef:
+              name: env-configmap
+              key: POSTGRES_HOST
         - name: POSTGRES_DB
-          value: "postgres"
+          valueFrom:
+            configMapKeyRef:
+              name: env-configmap
+              key: POSTGRES_DB
