@@ -3,8 +3,10 @@ kind: ConfigMap
 metadata:    
   name: env-configmap
 data:  
-  POSTGRES_HOST: postgres.ceiwqiqekpe9.us-east-1.rds.amazonaws.com 
-  POSTGRES_DB: postgres  
-  AWS_BUCKET: monocluster-6338
-  AWS_REGION: us-east-1 
-  JWT_SECRET: testing  
+  POSTGRES_HOST: "postgres.ceiwqiqekpe9.us-east-1.rds.amazonaws.com"
+  POSTGRES_DB: "postgres" 
+  AWS_BUCKET: "monocluster-6338"
+  AWS_REGION: "us-east-1"
+  JWT_SECRET: "testing"
+  AWS_PROFILE: "default"
+  URL: "http://localhost:80" 
